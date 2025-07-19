@@ -51,7 +51,6 @@ To use this application, your Ark Ascended server must have RCON enabled:
    [ServerSettings]
    RCONEnabled=True
    RCONPort=32330
-   RCONPassword=YourSecurePassword
    ```
 
 2. **Default RCON Port**
@@ -59,8 +58,7 @@ To use this application, your Ark Ascended server must have RCON enabled:
    - Make sure this port is open in your firewall
 
 3. **RCON Password**
-   - Use a strong, secure password
-   - This password will be used to connect from the web app
+   - Password is just the server admin password
 
 ## Usage
 
