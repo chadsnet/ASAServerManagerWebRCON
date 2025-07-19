@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ark RCON Admin</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-server"></i> Ridin Dinos Server Manager</h1>
+            <p>Manage your Ark Ascended dedicated servers</p>
+        </header>
+
+        <div class="main-content">
+            <!-- Server Management Section -->
+            <div class="section">
+                <div class="section-header">
+                    <h2><i class="fas fa-list"></i> Server Management</h2>
+                    <div class="header-actions">
+                        <button class="btn btn-secondary" onclick="refreshServerStatus()">
+                            <i class="fas fa-sync-alt"></i> Refresh Status
+                        </button>
+                        <button class="btn btn-primary" onclick="showAddServerModal()">
+                            <i class="fas fa-plus"></i> Add Server
+                        </button>
+                    </div>
+                </div>
+
+                <div class="servers-grid" id="serversGrid">
+                    <!-- Servers will be populated here -->
+                </div>
+            </div>
+
+            <!-- Quick Actions Section -->
+            <div class="section">
+                <h2><i class="fas fa-bolt"></i> Quick Actions</h2>
+                <div class="quick-actions">
+                    <div class="action-group">
+                        <h3>Server Management</h3>
+                        <div class="action-buttons">
+                            <button class="btn btn-info" onclick="quickAction('saveworld')">
+                                <i class="fas fa-save"></i> Save World
+                            </button>
+                            <button class="btn btn-warning" onclick="quickAction('doexit')">
+                                <i class="fas fa-power-off"></i> Shutdown
+                            </button>
+                            <button class="btn btn-secondary" onclick="quickAction('listplayers')">
+                                <i class="fas fa-users"></i> List Players
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Command Console Section -->
+            <div class="section">
+                <h2><i class="fas fa-terminal"></i> Command Console</h2>
+                <div class="console-container">
+                    <div class="console-output" id="consoleOutput">
+                        <div class="console-message">
+                            <span class="timestamp">[System]</span>
+                            <span class="message">Welcome to Ridin Dinos Server Manager. Select a server or use "Send to All Connected" to start sending commands.</span>
+                        </div>
+                    </div>
+                    <div class="console-input">
+                        <select id="selectedServer" class="server-select">
+                            <option value="">Select a server...</option>
+                        </select>
+                        <input type="text" id="commandInput" placeholder="Enter RCON command..." disabled>
+                        <button id="sendCommand" class="btn btn-primary" disabled>
+                            <i class="fas fa-paper-plane"></i> Send
+                        </button>
+                        <button id="sendToAll" class="btn btn-success" disabled>
+                            <i class="fas fa-broadcast-tower"></i> Send to All Connected
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Server Modal -->
+    <div id="addServerModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-plus"></i> Add New Server</h3>
+                <span class="close" onclick="closeAddServerModal()">&times;</span>
+            </div>
+            <form id="addServerForm">
+                <div class="form-group">
+                    <label for="serverName">Server Name:</label>
+                    <input type="text" id="serverName" required placeholder="My Ark Server">
+                </div>
+                <div class="form-group">
+                    <label for="serverHost">Host/IP:</label>
+                    <input type="text" id="serverHost" required placeholder="192.168.1.100">
+                </div>
+                <div class="form-group">
+                    <label for="serverPort">RCON Port:</label>
+                    <input type="number" id="serverPort" required placeholder="32330" min="1" max="65535">
+                </div>
+                <div class="form-group">
+                    <label for="serverPassword">RCON Password:</label>
+                    <input type="password" id="serverPassword" required placeholder="Your RCON password">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeAddServerModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add Server</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-exclamation-triangle"></i> Confirm Action</h3>
+                <span class="close" onclick="closeConfirmModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p id="confirmMessage">Are you sure you want to perform this action?</p>
+            </div>
+            <div class="form-actions">
+                <button class="btn btn-secondary" onclick="closeConfirmModal()">Cancel</button>
+                <button id="confirmAction" class="btn btn-danger">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 

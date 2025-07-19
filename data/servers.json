@@ -1,0 +1,37 @@
+[
+  {
+    "id": "1752903592654",
+    "name": "RidinDinos Aberation",
+    "host": "game.chadsnet",
+    "port": 27044,
+    "password": "balls123"
+  },
+  {
+    "id": "1752903605427",
+    "name": "RidinDinos Extinction",
+    "host": "game.chadsnet",
+    "port": 27042,
+    "password": "balls123"
+  },
+  {
+    "id": "1752904069238",
+    "name": "RidinDinos Ragnarok",
+    "host": "game.chadsnet",
+    "port": 27040,
+    "password": "balls123"
+  },
+  {
+    "id": "1752904094652",
+    "name": "RidinDinos TheIsland",
+    "host": "game.chadsnet",
+    "port": 27046,
+    "password": "balls123"
+  },
+  {
+    "id": "1752904116638",
+    "name": "RidinDinos TheCenter",
+    "host": "game.chadsnet",
+    "port": 27048,
+    "password": "balls123"
+  }
+]
